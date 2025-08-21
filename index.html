@@ -33,6 +33,20 @@
             margin-bottom: 40px;
         }
         
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .gamepad-icon {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 10px rgba(233, 69, 96, 0.7));
+        }
+        
         h1 {
             font-size: 3rem;
             margin-bottom: 10px;
@@ -44,6 +58,10 @@
             font-size: 1.2rem;
             color: #8fe3cf;
             margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
         
         .menu {
@@ -58,12 +76,15 @@
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid #0f3460;
             border-radius: 15px;
-            padding: 20px 30px;
+            padding: 25px 20px;
             width: 250px;
             transition: all 0.3s ease;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .game-btn:hover {
@@ -83,6 +104,8 @@
             color: #ccc;
             font-size: 1rem;
             margin-bottom: 20px;
+            text-align: center;
+            flex-grow: 1;
         }
         
         .btn {
@@ -101,6 +124,13 @@
         .btn:hover {
             background: #ff6b81;
             box-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
+            transform: scale(1.05);
+        }
+        
+        .game-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #e94560;
         }
         
         footer {
@@ -118,32 +148,43 @@
             h1 {
                 font-size: 2.2rem;
             }
+            
+            .gamepad-icon {
+                width: 60px;
+                height: 60px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🎮 CATÁLOGO DE VIDEOJUEGOS 🎮</h1>
-            <p class="subtitle">Explora nuestras colecciones especializadas de videojuegos</p>
+            <div class="logo-container">
+                <img src="https://images.vexels.com/media/users/3/153149/isolated/preview/1dbe90ba2f24289a1668a0dbc8150e2e-icono-de-trazo-de-color-de-gamepad.png" alt="Icono de Gamepad" class="gamepad-icon">
+                <h1>CATÁLOGO DE VIDEOJUEGOS</h1>
+            </div>
+            <p class="subtitle">Explora nuestras colecciones especializadas de videojuegos seleccionadas por nuestros expertos</p>
         </header>
         
         <div class="menu">
             <div class="game-btn">
+                <div class="game-icon">🗡️</div>
                 <h2>Jonhy</h2>
-                <p>Descubre los juegos de acción y aventura seleccionados por Jonhy</p>
+                <p>Descubre los juegos de acción y aventura seleccionados por Jonhy. Explora mundos fantásticos y vive emocionantes historias.</p>
                 <a href="Jonhy.html" class="btn">Ver Colección</a>
             </div>
             
             <div class="game-btn">
+                <div class="game-icon">🐉</div>
                 <h2>Obed</h2>
-                <p>Explora los RPG y mundos abiertos curados por Obed</p>
+                <p>Explora los RPG y mundos abiertos curados por Obed. Sumérgete en narrativas profundas y universos expansivos.</p>
                 <a href="Obed.html" class="btn">Ver Colección</a>
             </div>
             
             <div class="game-btn">
+                <div class="game-icon">🔫</div>
                 <h2>Carlos</h2>
-                <p>Sumérgete en los shooters y juegos competitivos de Carlos</p>
+                <p>Sumérgete en los shooters y juegos competitivos de Carlos. Perfecto para los amantes de la acción y la competición.</p>
                 <a href="Carlos.html" class="btn">Ver Colección</a>
             </div>
         </div>
