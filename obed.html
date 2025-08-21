@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de RPGs Mundo Abierto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0d1b2a;
+            color: #e0e1dd;
+            line-height: 1.6;
+            background-image: linear-gradient(rgba(13, 27, 42, 0.9), rgba(13, 27, 42, 0.9)), 
+                              url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1b263b, #415a77);
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            border-bottom: 3px solid #ff9e01;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #ff9e01;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-family: 'Georgia', serif;
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ff9e01;
+            color: #0d1b2a;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-button:hover {
+            background-color: #ffaa33;
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: rgba(27, 38, 59, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            border: 1px solid #ff9e01;
+        }
+        
+        .intro h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ff9e01;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #e0e1dd;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: #415a77;
+            color: #e0e1dd;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover {
+            background: #ff9e01;
+            color: #0d1b2a;
+        }
+        
+        .filter-btn.active {
+            background: #ff9e01;
+            color: #0d1b2a;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .game-card {
+            background: linear-gradient(to bottom, #1b263b, #2c3f5c);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid #415a77;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            border-color: #ff9e01;
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid #ff9e01;
+        }
+        
+        .game-info {
+            padding: 25px;
+        }
+        
+        .game-title {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: #ff9e01;
+            font-family: 'Georgia', serif;
+        }
+        
+        .game-description {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: #c5c5c5;
+            line-height: 1.5;
+        }
+        
+        .game-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .game-price {
+            font-weight: bold;
+            color: #ff9e01;
+            font-size: 1.4rem;
+        }
+        
+        .game-platforms {
+            color: #7d9bc0;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .game-platforms i {
+            font-size: 1.2rem;
+        }
+        
+        .game-rating {
+            color: gold;
+            font-size: 1.1rem;
+        }
+        
+        .game-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .feature {
+            background: rgba(255, 158, 1, 0.15);
+            color: #ff9e01;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            background-color: #1b263b;
+            color: #e0e1dd;
+            border-top: 3px solid #ff9e01;
+        }
+        
+        .newsletter {
+            background: rgba(27, 38, 59, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px auto;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+        
+        .newsletter h3 {
+            color: #ff9e01;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .newsletter-form input {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            width: 300px;
+            background: #e0e1dd;
+        }
+        
+        .newsletter-form button {
+            background: #ff9e01;
+            color: #0d1b2a;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background: #ffaa33;
+        }
+        
+        @media (max-width: 768px) {
+            .back-button {
+                position: relative;
+                left: 0;
+                top: 0;
+                transform: none;
+                margin-bottom: 20px;
+                justify-content: center;
+                width: 200px;
+                margin: 0 auto 20px;
+            }
+            
+            header {
+                padding: 25px 15px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .newsletter-form input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Volver al Inicio
+        </a>
+        <h1>Catálogo de RPGs Mundo Abierto</h1>
+        <p>Explora vastos mundos llenos de aventuras épicas</p>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>Sumérgete en Mundos de Fantasía</h2>
+            <p>Descubre los mejores RPGs de mundo abierto donde tú decides el camino a seguir. Explora paisajes increíbles, completa misiones épicas y forja tu propia leyenda.</p>
+        </div>
+        
+        <div class="filters">
+            <button class="filter-btn active">Todos</button>
+            <button class="filter-btn">Fantasia</button>
+            <button class="filter-btn">Ciencia Ficción</button>
+            <button class="filter-btn">Postapocalíptico</button>
+            <button class="filter-btn">Acción</button>
+        </div>
+        
+        <div class="games-grid">
+            <!-- Juego 1 -->
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1084&q=80" alt="The Witcher 3" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">The Witcher 3</h3>
+                    <p class="game-description">Como Geralt de Rivia, cazador de monstruos, tendrás que enfrentarte a criaturas peligrosas y tomar decisiones que moldean la narrativa.</p>
+                    <div class="game-details">
+                        <span class="game-platforms">
+                            <i class="fab fa-windows"></i>
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                        </span>
+                        <span class="game-rating">★★★★★</span>
+                    </div>
+                    <div class="game-price">$39.99</div>
+                    <div class="game-features">
+                        <span class="feature">Mundo Abierto</span>
+                        <span class="feature">Fantasia</span>
+                        <span class="feature">Más de 100h</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Juego 2 -->
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Skyrim" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Skyrim</h3>
+                    <p class="game-description">El mundo de Skyrim está al borde del colapso ya que el Imperio se prepara para la guerra mientras los dragones regresan a la tierra.</p>
+                    <div class="game-details">
+                        <span class="game-platforms">
+                            <i class="fab fa-windows"></i>
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                        </span>
+                        <span class="game-rating">★★★★★</span>
+                    </div>
+                    <div class="game-price">$29.99</div>
+                    <div class="game-features">
+                        <span class="feature">Mundo Abierto</span>
+                        <span class="feature">Fantasia</span>
+                        <span class="feature">Mods Ilimitados</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Juego 3 -->
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Cyberpunk 2077" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Cyberpunk 2077</h3>
+                    <p class="game-description">Conviértete en un mercenario cyberpunk y embárcate en una búsqueda en la ciudad futurista de Night City.</p>
+                    <div class="game-details">
+                        <span class="game-platforms">
+                            <i class="fab fa-windows"></i>
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                        </span>
+                        <span class="game-rating">★★★★☆</span>
+                    </div>
+                    <div class="game-price">$49.99</div>
+                    <div class="game-features">
+                        <span class="feature">Mundo Abierto</span>
+                        <span class="feature">Ciencia Ficción</span>
+                        <span class="feature">Personalización</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Juego 4 -->
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1542751371-6533a4595f6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Elden Ring" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Elden Ring</h3>
+                    <p class="game-description">Un RPG de acción ambientado en un mundo de fantasía creado por Hidetaka Miyazaki y George R. R. Martin.</p>
+                    <div class="game-details">
+                        <span class="game-platforms">
+                            <i class="fab fa-windows"></i>
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                        </span>
+                        <span class="game-rating">★★★★★</span>
+                    </div>
+                    <div class="game-price">$59.99</div>
+                    <div class="game-features">
+                        <span class="feature">Mundo Abierto</span>
+                        <span class="feature">Souls-like</span>
+                        <span class="feature">Desafiante</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Juego 5 -->
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="The Legend of Zelda" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Zelda: Breath of the Wild</h3>
+                    <p class="game-description">Explora el reino de Hyrule y descubre los secretos del pasado en esta aventura de mundo abierto.</p>
+                    <div class="game-details">
+                        <span class="game-platforms">
+                            <i class="fab fa-nintendo-switch"></i>
+                        </span>
+                        <span class="game-rating">★★★★★</span>
+                    </div>
+                    <div class="game-price">$59.99</div>
+                    <div class="game-features">
+                        <span class="feature">Mundo Abierto</span>
+                        <span class="feature">Aventura</span>
+                        <span class="feature">Puzzles</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Juego 6 -->
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1057&q=80" alt="Fallout 4" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Fallout 4</h3>
+                    <p class="game-description">Un RPG postapocalíptico donde emerges de un refugio nuclear para explorar los restos de la civilización.</p>
+                    <div class="game-details">
+                        <span class="game-platforms">
+                            <i class="fab fa-windows"></i>
+                            <i class="fab fa-playstation"></i>
+                            <i class="fab fa-xbox"></i>
+                        </span>
+                        <span class="game-rating">★★★★☆</span>
+                    </div>
+                    <div class="game-price">$29.99</div>
+                    <div class="game-features">
+                        <span class="feature">Mundo Abierto</span>
+                        <span class="feature">Postapocalíptico</span>
+                        <span class="feature">Supervivencia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="newsletter">
+            <h3>Suscríbete a nuestro boletín</h3>
+            <p>Recibe las últimas novedades sobre RPGs mundo abierto y ofertas exclusivas</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico">
+                <button>Suscribirse</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Catálogo de RPGs Mundo Abierto &copy; 2023 - Todos los derechos reservados</p>
+        <p>Explora, descubre y vive aventuras épicas</p>
+    </footer>
+
+    <script>
+        // Funcionalidad básica para los botones de filtro
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
