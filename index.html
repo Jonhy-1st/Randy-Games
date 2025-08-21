@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Videojuegos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        header {
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #e94560;
+            text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8fe3cf;
+            margin-bottom: 30px;
+        }
+        
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .game-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #0f3460;
+            border-radius: 15px;
+            padding: 20px 30px;
+            width: 250px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .game-btn:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+            border-color: #e94560;
+            background: rgba(233, 69, 96, 0.2);
+        }
+        
+        .game-btn h2 {
+            color: #8fe3cf;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .game-btn p {
+            color: #ccc;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: #e94560;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background: #ff6b81;
+            box-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
+        }
+        
+        footer {
+            margin-top: 50px;
+            color: #5a7d9a;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 CATÁLOGO DE VIDEOJUEGOS 🎮</h1>
+            <p class="subtitle">Explora nuestras colecciones especializadas de videojuegos</p>
+        </header>
+        
+        <div class="menu">
+            <div class="game-btn">
+                <h2>Jonhy</h2>
+                <p>Descubre los juegos de acción y aventura seleccionados por Jonhy</p>
+                <a href="Jonhy.html" class="btn">Ver Colección</a>
+            </div>
+            
+            <div class="game-btn">
+                <h2>Obed</h2>
+                <p>Explora los RPG y mundos abiertos curados por Obed</p>
+                <a href="Obed.html" class="btn">Ver Colección</a>
+            </div>
+            
+            <div class="game-btn">
+                <h2>Carlos</h2>
+                <p>Sumérgete en los shooters y juegos competitivos de Carlos</p>
+                <a href="Carlos.html" class="btn">Ver Colección</a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Catálogo de Videojuegos - Todos los derechos reservados</p>
+        </footer>
+    </div>
+</body>
+</html>
