@@ -55,18 +55,21 @@
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border: 2px solid #ff9d00;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .back-btn:hover {
             background: #ff9d00;
             box-shadow: 0 0 15px rgba(255, 157, 0, 0.7);
+            transform: translateY(-2px);
         }
         
         .filters {
@@ -116,6 +119,7 @@
         .game-img {
             height: 180px;
             overflow: hidden;
+            position: relative;
         }
         
         .game-img img {
@@ -166,6 +170,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 15px;
+            flex-wrap: wrap;
         }
         
         .platform {
@@ -185,10 +190,33 @@
             cursor: pointer;
             font-weight: bold;
             transition: background 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
         }
         
         .add-to-cart:hover {
             background: #ffaa2b;
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        .hero-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ff9d00;
+        }
+        
+        .hero-section p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #ccc;
+            line-height: 1.6;
         }
         
         footer {
@@ -197,6 +225,12 @@
             padding: 20px;
             color: #5a7d9a;
             border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
         }
         
         @media (max-width: 768px) {
@@ -212,6 +246,12 @@
             .logo h1 {
                 font-size: 2rem;
             }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -222,8 +262,15 @@
                 <i class="fas fa-dragon"></i>
                 <h1>Aventuras Épicas</h1>
             </div>
-            <a href="index.html" class="back-btn">Volver al Menú Principal</a>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Volver al Menú Principal
+            </a>
         </header>
+        
+        <div class="hero-section">
+            <h2>Los Mejores Juegos de Aventura</h2>
+            <p>Explora mundos fantásticos, resuelve misterios ancestrales y vive emocionantes historias con nuestra selección de los mejores juegos de aventura para todas las plataformas.</p>
+        </div>
         
         <div class="filters">
             <button class="filter-btn active">Todos</button>
@@ -257,7 +304,9 @@
                         <span class="platform">XBOX</span>
                         <span class="platform">PC</span>
                     </div>
-                    <button class="add-to-cart">Añadir al Carrito</button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+                    </button>
                 </div>
             </div>
             
@@ -284,7 +333,9 @@
                         <span class="platform">PC</span>
                         <span class="platform">Switch</span>
                     </div>
-                    <button class="add-to-cart">Añadir al Carrito</button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+                    </button>
                 </div>
             </div>
             
@@ -312,7 +363,9 @@
                         <span class="platform">PC</span>
                         <span class="platform">Switch</span>
                     </div>
-                    <button class="add-to-cart">Añadir al Carrito</button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+                    </button>
                 </div>
             </div>
             
@@ -339,7 +392,9 @@
                         <span class="platform">XBOX</span>
                         <span class="platform">PC</span>
                     </div>
-                    <button class="add-to-cart">Añadir al Carrito</button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+                    </button>
                 </div>
             </div>
             
@@ -365,7 +420,9 @@
                         <span class="platform">XBOX</span>
                         <span class="platform">PC</span>
                     </div>
-                    <button class="add-to-cart">Añadir al Carrito</button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+                    </button>
                 </div>
             </div>
             
@@ -391,9 +448,20 @@
                         <span class="platform">PS5</span>
                         <span class="platform">PC</span>
                     </div>
-                    <button class="add-to-cart">Añadir al Carrito</button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+                    </button>
                 </div>
             </div>
+        </div>
+        
+        <div class="navigation-buttons">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Volver al Menú Principal
+            </a>
+            <button class="back-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <i class="fas fa-arrow-up"></i> Volver Arriba
+            </button>
         </div>
         
         <footer>
