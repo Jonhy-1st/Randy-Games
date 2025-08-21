@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Aventura - Jonhy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            color: #ff9d00;
+            text-shadow: 0 0 10px rgba(255, 157, 0, 0.5);
+        }
+        
+        .logo i {
+            font-size: 2.8rem;
+            color: #ff9d00;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid #ff9d00;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .back-btn:hover {
+            background: #ff9d00;
+            box-shadow: 0 0 15px rgba(255, 157, 0, 0.7);
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: #ff9d00;
+            box-shadow: 0 0 10px rgba(255, 157, 0, 0.5);
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .game-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .game-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .game-card:hover .game-img img {
+            transform: scale(1.1);
+        }
+        
+        .game-info {
+            padding: 20px;
+        }
+        
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #ff9d00;
+        }
+        
+        .game-desc {
+            color: #ccc;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            height: 60px;
+            overflow: hidden;
+        }
+        
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .game-rating {
+            color: #ff9d00;
+        }
+        
+        .game-price {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .game-platforms {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .platform {
+            background: rgba(255, 157, 0, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .add-to-cart {
+            background: #ff9d00;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background: #ffaa2b;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #5a7d9a;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-dragon"></i>
+                <h1>Aventuras Épicas</h1>
+            </div>
+            <a href="index.html" class="back-btn">Volver al Menú Principal</a>
+        </header>
+        
+        <div class="filters">
+            <button class="filter-btn active">Todos</button>
+            <button class="filter-btn">Acción-Aventura</button>
+            <button class="filter-btn">Mundo Abierto</button>
+            <button class="filter-btn">Aventura Gráfica</button>
+            <button class="filter-btn">VR</button>
+        </div>
+        
+        <div class="games-grid">
+            <!-- Juego 1 -->
+            <div class="game-card">
+                <div class="game-img">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="The Lost Kingdom">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">The Lost Kingdom</h3>
+                    <p class="game-desc">Explora ruinas antiguas y descubre secretos olvidados en esta épica aventura.</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="game-price">$49.99</div>
+                    </div>
+                    <div class="game-platforms">
+                        <span class="platform">PS5</span>
+                        <span class="platform">XBOX</span>
+                        <span class="platform">PC</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Juego 2 -->
+            <div class="game-card">
+                <div class="game-img">
+                    <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Ocean Explorer">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Ocean Explorer</h3>
+                    <p class="game-desc">Sumérgete en las profundidades y descubre civilizaciones submarinas perdidas.</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="game-price">$39.99</div>
+                    </div>
+                    <div class="game-platforms">
+                        <span class="platform">PS5</span>
+                        <span class="platform">PC</span>
+                        <span class="platform">Switch</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Juego 3 -->
+            <div class="game-card">
+                <div class="game-img">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mountain Quest">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Mountain Quest</h3>
+                    <p class="game-desc">Escala montañas legendarias y resuelve acertijos ancestrales en tu camino a la cima.</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="game-price">$59.99</div>
+                    </div>
+                    <div class="game-platforms">
+                        <span class="platform">PS5</span>
+                        <span class="platform">XBOX</span>
+                        <span class="platform">PC</span>
+                        <span class="platform">Switch</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Juego 4 -->
+            <div class="game-card">
+                <div class="game-img">
+                    <img src="https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Jungle Mystery">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Jungle Mystery</h3>
+                    <p class="game-desc">Adéntrate en la jungla profunda en busca de un tesoro legendario perdido.</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="game-price">$34.99</div>
+                    </div>
+                    <div class="game-platforms">
+                        <span class="platform">PS5</span>
+                        <span class="platform">XBOX</span>
+                        <span class="platform">PC</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Juego 5 -->
+            <div class="game-card">
+                <div class="game-img">
+                    <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Desert Odyssey">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Desert Odyssey</h3>
+                    <p class="game-desc">Sobrevive a las dunas infinitas y descubre la ciudad perdida en el desierto.</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="game-price">$44.99</div>
+                    </div>
+                    <div class="game-platforms">
+                        <span class="platform">XBOX</span>
+                        <span class="platform">PC</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+            
+            <!-- Juego 6 -->
+            <div class="game-card">
+                <div class="game-img">
+                    <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cyber Quest">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Cyber Quest</h3>
+                    <p class="game-desc">Una aventura cyberpunk donde debes hackear sistemas y resolver misterios digitales.</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="game-price">$54.99</div>
+                    </div>
+                    <div class="game-platforms">
+                        <span class="platform">PS5</span>
+                        <span class="platform">PC</span>
+                    </div>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Catálogo de Aventuras - Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        // Funcionalidad para los botones de filtro
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                this.classList.add('active');
+                
+                // Aquí iría la lógica para filtrar los juegos
+                // Por simplicidad, no se implementa en este ejemplo
+            });
+        });
+        
+        // Funcionalidad para los botones de carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const gameTitle = this.parentElement.querySelector('.game-title').textContent;
+                alert(`¡${gameTitle} añadido al carrito!`);
+            });
+        });
+    </script>
+</body>
+</html>
